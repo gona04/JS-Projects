@@ -1,0 +1,61 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: whitesmoke;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    font-size: 1.5rem;
+}
+
+#text-container {
+    width: 70rem;
+    height: auto; 
+    margin: 2rem auto;
+    line-height: 2rem;
+    white-space: nowrap;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 1%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: none;
+}
+
+#timer { 
+    margin: 1rem;
+    font-size: 1.2rem;
+}
+
+button {
+    padding: 1rem;
+    width: 15rem;
+    background-color: rgb(43,43,43);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    display: none;
+}
+
+button:hover {
+    filter: brightness(1.2)
+}
+
+.correct {
+    color: green;
+}
+
+.error {
+    color: red;
+}
