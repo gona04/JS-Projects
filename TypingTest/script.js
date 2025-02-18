@@ -59,18 +59,15 @@ function getShuffledWords() {
 //Handle the keyboard letters over the already given text and also scroll the text accordignly 
 document.addEventListener('keydown', (e) => {
    if(e.key === 'Backspace') {
-    console.log('in backspace', totalWordsTyped);
     if(totalWordsTyped.length > 0) {
         currentCharIndex = Math.max(currentCharIndex - 1, 0)
         totalWordsTyped = totalWordsTyped.slice(0,-1) 
     } 
    } else if(e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
         totalWordsTyped += e.key;
-        console.log('Not in backpace')
         currentCharIndex ++;
     }
 
-   console.log(`e.key -> ${e.key}, total typed -> ${totalWordsTyped}, CurrentCharacterIndex -> ${currentCharIndex}`)
     
     const textArray = shuffledWords.split('');
     textContainer.innerHTML = '';
@@ -91,5 +88,11 @@ document.addEventListener('keydown', (e) => {
 
         span.textContent = textArray[i];
         textContainer.appendChild(span);
+    }
+
+    //Scroll the container only after 20 characters
+    if(totalWordsTyped.length >= 20) {
+        const scrollAmount = (totalWordsTyped.length - 20) * 14; 
+        textContainer.scrollLeft = scrollAmount;
     }
 })

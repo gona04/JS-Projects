@@ -59,3 +59,7 @@ button:hover {
 .error {
     color: red;
 }
+
+span {
+    min-width: 14px;
+}
