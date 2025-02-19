@@ -40,6 +40,9 @@ textContainer.innerHTML = shuffledWords;
 let totalWordsTyped = '';
 let currentCharIndex = 0;
 let errors = 0;
+let timeLeft = 60;
+let timerInterval;
+let typingStarted = false;
 
 // Shuffle the words from the array 
 function shuffleArray(array) {
@@ -56,8 +59,29 @@ function getShuffledWords() {
     return longSuffledWords.join(' ');
 }
 
+//Starting our timer 
+function startTimer() {
+    if(!typingStarted) {
+        typingStarted = true;
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = `Time Left ${timeLeft}s`
+            if(timeLeft <= 0) {
+                clearInterval(timerInterval);
+                endTest();
+            }
+        }, 1000);
+    }
+}
+
+// Test results 
+function endTest() {
+    alert('Test is over!');
+}
+
 //Handle the keyboard letters over the already given text and also scroll the text accordignly 
 document.addEventListener('keydown', (e) => {
+    startTimer();
    if(e.key === 'Backspace') {
     if(totalWordsTyped.length > 0) {
         currentCharIndex = Math.max(currentCharIndex - 1, 0)
