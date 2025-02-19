@@ -39,7 +39,7 @@ textContainer.innerHTML = shuffledWords;
 //Calculating how many words were correctly typed
 let totalWordsTyped = '';
 let currentCharIndex = 0;
-let error = 0;
+let errors = 0;
 
 // Shuffle the words from the array 
 function shuffleArray(array) {
@@ -82,7 +82,7 @@ document.addEventListener('keydown', (e) => {
                 span.classList.add('correct');
             } else {
                 span.classList.add('error');
-                error++;
+                errors++;
             }
         }
 
@@ -95,4 +95,5 @@ document.addEventListener('keydown', (e) => {
         const scrollAmount = (totalWordsTyped.length - 20) * 14; 
         textContainer.scrollLeft = scrollAmount;
     }
+    
 })
