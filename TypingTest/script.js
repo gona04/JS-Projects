@@ -40,7 +40,7 @@ textContainer.innerHTML = shuffledWords;
 let totalWordsTyped = '';
 let currentCharIndex = 0;
 let errors = 0;
-let timeLeft = 60;
+let timeLeft = 6;
 let timerInterval;
 let typingStarted = false;
 
@@ -76,7 +76,17 @@ function startTimer() {
 
 // Test results 
 function endTest() {
-    alert('Test is over!');
+    timerElement.textContent = `Time's up!`; 
+    finalScoreElement.textContent = `Final WPM: ${calculateWPM()}`;
+    textContainer.style.display = 'none';
+}
+
+//Calulate Words per minute with error
+function calculateWPM() {
+    const wordsTyped = totalWordsTyped.trim().split(/\s+/).length;
+    const baseWPM = Math.round((wordsTyped/6) * 60);
+    const adjustedWPM = Math.max(baseWPM - errors, 0);
+    return adjustedWPM;
 }
 
 //Handle the keyboard letters over the already given text and also scroll the text accordignly 
@@ -119,5 +129,6 @@ document.addEventListener('keydown', (e) => {
         const scrollAmount = (totalWordsTyped.length - 20) * 14; 
         textContainer.scrollLeft = scrollAmount;
     }
-    
 })
+
+
