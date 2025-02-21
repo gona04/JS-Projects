@@ -33,9 +33,6 @@ const timerElement = document.getElementById('timer');
 const tryAgainButton = document.getElementById('try-again');
 const finalScoreElement = document.getElementById('final-score');
 
-let shuffledWords = getShuffledWords();
-textContainer.innerHTML = shuffledWords;
-
 //Calculating how many words were correctly typed
 let totalWordsTyped = '';
 let currentCharIndex = 0;
@@ -43,6 +40,9 @@ let errors = 0;
 let timeLeft = 6;
 let timerInterval;
 let typingStarted = false;
+
+let  shuffledWords = getShuffledWords();
+textContainer.innerHTML = shuffledWords;
 
 // Shuffle the words from the array 
 function shuffleArray(array) {
@@ -79,6 +79,7 @@ function endTest() {
     timerElement.textContent = `Time's up!`; 
     finalScoreElement.textContent = `Final WPM: ${calculateWPM()}`;
     textContainer.style.display = 'none';
+    tryAgainButton.style.display = 'block';
 }
 
 //Calulate Words per minute with error
@@ -130,5 +131,34 @@ document.addEventListener('keydown', (e) => {
         textContainer.scrollLeft = scrollAmount;
     }
 })
+
+tryAgainButton.addEventListener('click', () => {
+    alert('in try again');
+    restTest()
+})
+
+//Reset Test 
+// Reset Test
+function restTest() {
+    clearInterval(timerInterval);
+    timeLeft = 60;
+    timerElement.textContent = `Time Left ${timeLeft}`;
+    finalScoreElement.textContent = '';
+    textContainer.style.display = 'block';
+    tryAgainButton.style.display = 'none';
+    totalWordsTyped = '';
+    typingStarted = false;
+    currentCharIndex = 0;
+    errors = 0;
+    textContainer.scrollLeft = 0;
+
+    // Clear the textContainer content
+    textContainer.innerHTML = '';
+
+    // Reinitialize the textContainer with shuffled words
+        shuffledWords = getShuffledWords();
+        textContainer.innerHTML = shuffledWords;
+    
+}
 
 
