@@ -63,3 +63,48 @@ button:hover {
 span {
     min-width: 14px;
 }
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    body {
+        font-size: 1.2rem;
+    }
+
+    #text-container {
+        width: 90%;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    button {
+        width: 12rem;
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+
+    #timer {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 1rem;
+    }
+
+    #text-container {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    button {
+        width: 10rem;
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    #timer {
+        font-size: 0.9rem;
+    }
+}
