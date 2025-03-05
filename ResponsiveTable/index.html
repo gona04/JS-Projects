@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Responsive Table</title>
+</head>
+<!-- <body class="dark-mode"> -->
+   <body>
+    <script src="./script.js" defer></script>
+    <!-- Dark mode Toggle -->
+     <div class="theme-toggle" id="theme-toggle">
+        Dark Mode
+     </div>
+
+     <!-- Container -->
+      <div class="container">
+        <h1>Most Active Users</h1>
+        <!-- Loader -->
+        <div class="spinner " id="spinner" hidden>
+            <i class="fas fa-cog fa-spin"></i>
+        </div>
+        <!-- Table -->
+         <table id="data-table">
+            <thead>
+                <tr>
+                    <th class="name-column">Name <i class="fas fa-sort" id="icon-0"></i> </th>
+                    <th class="email-column">Email <i class="fas fa-sort" id="icon-1"></i> </th>
+                    <th class="username-column">User Name <i class="fas fa-sort" id="icon-2"></i> </th>
+                    <th class="country-column">Country <i class="fas fa-sort" id="icon-3"></i> </th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <tr>
+                   <td>Name here 0 </td>
+                   <td>Email here 0 </td>
+                   <td> Username here 0</td>
+                   <td> Country here 0</td>
+                </tr>
+                <tr>
+                    <td data-label="Name">Name here 0 </td>
+                    <td data-label="Email">Email here 0 </td>
+                    <td data-label="Username"> Username here 0</td>
+                    <td data-label="Contry"> Country here 0</td>
+                 </tr>
+                 <tr>
+                  <td data-label="Name">Name here 1 </td>
+                  <td data-label="Email">Email here 1 </td>
+                  <td data-label="Username"> Username here 1</td>
+                  <td data-label="Contry"> Country here 1</td>
+               </tr>
+               <tr>
+                  <td data-label="Name">Name here 1 </td>
+                  <td data-label="Email">Email here 1 </td>
+                  <td data-label="Username"> Username here 1</td>
+                  <td data-label="Contry"> Country here 1</td>
+               </tr>
+               <tr>
+                  <td data-label="Name">Name here 3 </td>
+                  <td data-label="Email">Email here 3 </td>
+                  <td data-label="Username"> Username here 3</td>
+                  <td data-label="Contry"> Country here 3</td>
+               </tr>
+            </tbody>
+         </table>
+         <div class="pagination" id="pagination">
+            <button type="button" id="prev-btn" title="previous button" (click)="onPrevClicked()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span id="page-number">1</span>
+            <button type="button" id="nxt-btn" title="next button" >
+                <i class="fas fa-chevron-right"></i>
+            </button>
+         </div>
+      </div>
+</body>
+</html>
