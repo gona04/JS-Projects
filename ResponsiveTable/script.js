@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
     const spinner = document.getElementById('spinner');
     const table = document.getElementById('data-table');
     const tableBody = document.getElementById('table-body');
@@ -8,8 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageNumber = document.getElementById('page-number');
 
     let data = [];
+    let sortedData = [];
     let currentPage = 1;
     const rowsPerPage = 10;
+    let sortDirection = {};
 
     // Fetch data from API 
     async function fetchData() {
@@ -21,13 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('https://randomuser.me/api/?results=50');
             const json = await response.json();
             data = json.results;
-            displayData(data);
+            sortedData = [...data];
+            displayData(sortedData);
         } catch (error) {
             console.error('Error fetching data: ', error);
         } finally {
             spinner.style.display = 'none';
             table.style.display = 'table';
             pagination.style.display = 'block'; 
+            updatePaginationButtons();
         }
     }
 
@@ -42,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tableBody.innerHTML = '';
         const start = (currentPage - 1) * rowsPerPage;
         const end = start + rowsPerPage;
-        const paginatedItems = res.slice(start,end);
+        const paginatedItems = res.slice(start, end);
         updatePaginationButtons();
 
         paginatedItems.forEach(r => {
@@ -55,8 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             tableBody.appendChild(row);
         });
+
+        pageNumber.textContent = currentPage;
     }
 
+   
     // Fetch and display data on page load
     fetchData();
 
@@ -84,12 +90,71 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('dark-mode', 'true');
         }
     });
-});
 
-function onPrevClicked() {
-    if(currentPage > 1) {
-        currentPage--
-        displayData(data);
-    } 
+    prevBtn.addEventListener('click', onPrevClicked);
+    nextBtn.addEventListener('click', onNextClicked);
 
+    function onPrevClicked() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayData(sortedData);
+        }
+    }
+
+    function onNextClicked() {
+        if (currentPage < Math.ceil(sortedData.length / rowsPerPage)) {
+            currentPage++;
+            displayData(sortedData);
+        }
+    }
+
+  //Sort table by cloumn index
+  function sortTable(columnInex) {
+    clearSortIcons();
+    sortedData = [...sortedData].sort((a,b) => {
+        if(!sortDirection[columnInex]) {
+            sortDirection[columnInex] = 'asc'
+        }
+        let valA, valB; 
+        switch(columnInex) {
+            case 0: 
+                valA = `${a.name.first} ${a.name.last}`;
+                valB = `${b.name.first} ${b.name.last}`;
+                break;
+            case 1: 
+                valA = `${a.email}`;
+                valB = `${b.email}`;
+                break;
+            case 2: 
+                valA = `${a.login.username}`;
+                valB = `${b.login.username}`;
+                break;
+            case 3: 
+                valA = `${a.location.country}`;
+                valB = `${b.location.country}`;
+                break;
+        }
+        if(sortDirection[columnInex] === 'desc') {
+            return valB.localeCompare(valA)
+        } else {
+            return valA.localeCompare(valB);
+        }
+    });
+    updateSortIcon(columnInex, sortDirection[columnInex]);
+    sortDirection[columnInex] = sortDirection[columnInex] === 'asc' ? 'desc' : 'asc';
+    displayData(sortedData);
+}
+
+// Clear sort icons for all not sorted coulmns 
+function clearSortIcons() {
+    for(let i = 0; i < 4; i++) {
+        const icon = document.getElementById(`icon-${i}`);
+        icon.className = 'fas fa-sort'
+    }
+}
+
+//Update sort icon based on sort direction 
+function updateSortIcon(columnIndex, direction) {
+    const icon = document.getElementById(`icon-${columnIndex}`);
+    icon.className = direction === 'asc' ? 'fas fa-sort-down' : 'fas fa-sort-up';
 }

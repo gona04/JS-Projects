@@ -26,10 +26,10 @@
          <table id="data-table">
             <thead>
                 <tr>
-                    <th class="name-column">Name <i class="fas fa-sort" id="icon-0"></i> </th>
-                    <th class="email-column">Email <i class="fas fa-sort" id="icon-1"></i> </th>
-                    <th class="username-column">User Name <i class="fas fa-sort" id="icon-2"></i> </th>
-                    <th class="country-column">Country <i class="fas fa-sort" id="icon-3"></i> </th>
+                    <th onclick="sortTable(0)" class="name-column">Name <i class="fas fa-sort" id="icon-0"></i> </th>
+                    <th onclick="sortTable(1)" class="email-column">Email <i class="fas fa-sort" id="icon-1"></i> </th>
+                    <th onclick="sortTable(2)" class="username-column">User Name <i class="fas fa-sort" id="icon-2"></i> </th>
+                    <th onclick="sortTable(3)" class="country-column">Country <i class="fas fa-sort" id="icon-3"></i> </th>
                 </tr>
             </thead>
             <tbody id="table-body">
@@ -66,11 +66,11 @@
             </tbody>
          </table>
          <div class="pagination" id="pagination">
-            <button type="button" id="prev-btn" title="previous button" (click)="onPrevClicked()">
+            <button type="button" id="prev-btn" title="previous button">
                 <i class="fas fa-chevron-left"></i>
             </button>
             <span id="page-number">1</span>
-            <button type="button" id="nxt-btn" title="next button" >
+            <button type="button" id="nxt-btn" title="next button">
                 <i class="fas fa-chevron-right"></i>
             </button>
          </div>
