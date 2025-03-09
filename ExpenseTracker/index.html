@@ -1,13 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Expense Tracker</title>
 </head>
+
 <body>
-    <script src="./script.js" defer></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script type="module" src="./script.js"></script>
+
+    <div class="container">
+        <h1>Monthly Expense Tracker</h1>
+        <div class="form-container">
+            <form id="expense-form">
+                <!-- FOR THE LIST OF MONTHS -->
+                <div class="inputs-container">
+                    <div class="input-group">
+                        <label for="month">Month</label>
+                        <!-- Data dynamically generated -->
+                        <select name="month" id="month"></select>
+                    </div>
+                    <!-- FOR LIST OF YEARS -->
+                    <div class="input-group">
+                        <label for="year">Year</label>
+                        <!-- Data Dynamically generated -->
+                        <select name="year" id="year"></select>
+                    </div>
+
+
+
+                    <!-- FOR LIST OF Categories -->
+                    <div class="input-group">
+                        <label for="category">Categories</label>
+                        <!-- Data Dynamically generated -->
+                        <select name="category" id="category"></select>
+                    </div>
+
+                    <!-- For inputing amount -->
+                    <div class="input-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" name="amount" id="amount" required>
+                    </div>
+                </div>
+
+                <button type="submit">Add Expense</button>
+            </form>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="expense-chart"></canvas>
+        </div>
+    </div>
 </body>
+
 </html>
