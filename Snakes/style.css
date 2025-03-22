@@ -1,0 +1,47 @@
+body {
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: antiquewhite;
+}
+
+.container {
+    width: 80vw;
+    height: 70vh;
+    border: 1px solid #000000;
+    position: relative;
+}
+
+.snake {
+    width: 1rem;
+    height: 1rem;
+    left:50%;
+    top:50%;
+    position: absolute;
+    background-color: black;
+    border: 3px solid white;
+}
+
+.color-blink {
+    animation: blink 1s infinite; /* 1-second animation, repeats infinitely */
+}
+
+@keyframes blink {
+    0% {
+        background-color: black; /* Initial color */
+        border-color: white; /* Initial border color */
+    }
+    50% {
+        background-color: red; /* Blinking color */
+        border-color: yellow; /* Blinking border color */
+    }
+    100% {
+        background-color: black; /* Back to initial color */
+        border-color: white; /* Back to initial border color */
+    }
+}
