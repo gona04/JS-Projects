@@ -1,4 +1,29 @@
-// Function to show the custom alert
+// Function to dynamically load the alert box from alert.html
+function loadAlert() {
+    fetch('./alert.html') // Fetch the alert.html file
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Failed to load alert.html');
+            }
+            return response.text(); // Return the HTML content as text
+        })
+        .then((html) => {
+            // Inject the alert HTML into the body
+            const alertContainer = document.createElement('div');
+            alertContainer.innerHTML = html;
+            document.body.appendChild(alertContainer);
+
+            // Add event listener to the OK button
+            const alertOkButton = document.getElementById('alert-ok');
+            if (alertOkButton) {
+                alertOkButton.addEventListener('click', hideAlert);
+            }
+        })
+        .catch((error) => {
+            console.error('Error loading alert:', error);
+        });
+}
+
 // Function to show the custom alert
 function showAlert(message, callback) {
     const alertBox = document.getElementById("custom-alert");
@@ -32,10 +57,7 @@ function hideAlert() {
     }
 }
 
-// Ensure the DOM is fully loaded before adding event listeners
+// Ensure the alert box is loaded when the DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
-    const alertOkButton = document.getElementById("alert-ok");
-    if (alertOkButton) {
-        alertOkButton.addEventListener("click", hideAlert);
-    }
+    loadAlert(); // Dynamically load the alert box
 });

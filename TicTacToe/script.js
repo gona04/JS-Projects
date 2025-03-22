@@ -73,10 +73,12 @@ const TicTacToe = {
       });
   
       if (winner) {
-        alert('Winner is '+ winner)
+        showAlert(`Winner is ${winner}`);
+        // alert('Winner is '+ winner)
         this.clearBoard();
       } else if (this.clicked === 9) {
-        alert("It is a draw!");
+        showAlert('It is a draw');
+        // alert("It is a draw!");
         this.clearBoard();
       }
     },
