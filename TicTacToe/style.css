@@ -7,34 +7,114 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: "Comic Sans MS", "Comic Sans", cursive; /* Playful font */
+    background: linear-gradient(135deg, #3a3d40, #181818); /* Subtle dark gradient for accessibility */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #f0f0f0; /* Light text for contrast */
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
     flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+h2 {
+    color: #f0f0f0; /* Light text for contrast */
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-family: "Comic Sans MS", "Comic Sans", cursive; /* Playful font */
 }
 
 .box {
-    width: 50%;
-    height: 70%;
-    background-color: rgba(67, 156, 205, 0.929);
+    width: 90vw;
+    max-width: 400px;
+    aspect-ratio: 1; /* Ensures the board is always square */
+    background-color: #2c2f33; /* Dark gray for better contrast */
     display: flex;
     flex-wrap: wrap;
-    box-shadow: 2px 3px rgba(29, 94, 129, 0.929);;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 15px; /* Rounded corners for a softer look */
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.cell {
+    width: 33.33%; /* 1/3 of the board's width */
+    height: 33.33%; /* 1/3 of the board's height */
+    border: 1px solid #444; /* Subtle border for separation */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6a9fb5; /* Muted blue for X and O */
+    background-color: #3a3d40; /* Darker gray for better contrast */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-family: "Comic Sans MS", "Comic Sans", cursive; /* Playful font */
+}
+
+.cell:hover {
+    background-color: #4a4e57; /* Slightly lighter gray for hover effect */
+    transform: scale(1.05); /* Subtle scaling effect */
+}
+
+.cell:active {
+    transform: scale(0.95); /* Slightly smaller when clicked */
+}
+
+footer {
+    color: #f0f0f0; /* Light text for contrast */
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-top: 20px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive; /* Playful font */
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 600px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    .box {
+        width: 95vw; /* Slightly larger on smaller screens */
+        max-width: 300px; /* Reduce max width for smaller devices */
+    }
 
     .cell {
-        width: 33.3%;
-        height: 33.3%;
-        border: 1px solid black;
-        border-left: none;
-        border-top: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
+        font-size: 1.8rem; /* Reduce font size for smaller screens */
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 400px) {
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .box {
+        width: 100%; /* Take full width on very small screens */
+        max-width: none; /* Remove max-width constraint */
+    }
+
+    .cell {
+        font-size: 1.5rem; /* Further reduce font size */
+    }
+
+    footer {
+        font-size: 0.8rem;
     }
 }
